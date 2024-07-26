@@ -1,0 +1,99 @@
+// package org.acme.model;
+
+// import java.lang.reflect.Field;
+
+// public abstract class AbstractModel {
+//     private final StringBuffer JSONText = new StringBuffer();
+//     private final Field[] subclassFields;
+
+//     private enum FieldType {INT, DECIMAL, TEXT, ERROR};
+
+//     Object subclassReference;
+
+//     public AbstractModel() {
+//         subclassFields = this.getClass().getDeclaredFields();
+//     }
+
+//     public String serialize() {
+//         //Effectively clear previous text
+//         JSONText.setLength(0);
+
+//         JSONText.append('{');
+
+
+//         for (Field field : subclassFields) {
+//             String fieldJSON = null;
+
+//             switch(getFieldType(field)) {
+//                 case INT:
+//                     fieldJSON = serializeInt(field);
+//                     break;
+//                 case TEXT:
+//                     fieldJSON = serializeString(field);
+//                     break;
+//                 case DECIMAL:
+//                     fieldJSON = null; //Change Me
+//                     break;
+//                 case ERROR:
+//                     fieldJSON = null;
+//                     break;
+//             } 
+
+//             JSONText.append(fieldJSON);
+//         }
+        
+//         JSONText.append('}');
+
+//         removeTrailingComma(JSONText);
+
+//         return JSONText.toString();
+//     }
+
+//     private FieldType getFieldType(Field field) {
+//         switch (field.getType().getName()) {
+//             case "int":
+//                 return FieldType.INT;
+//             case "float": case "double":
+//                 return FieldType.DECIMAL;
+//             case "java.lang.String": case "char":
+//                 return FieldType.TEXT;
+//             default:
+//                 return FieldType.ERROR;
+//         }
+//     }
+
+//     private String serializeString(Field property) {
+//         String str =  "";
+
+//         try {
+//             str = '"' + property.getName() + "\":\"" + property.get(subclassReference).toString() + "\",";
+//         } catch (IllegalAccessException e) {
+//             //System.out.println(e.getMessage());
+//         }
+
+//        return str;
+//     }
+
+//     private String serializeInt(Field property) {
+//         String str =  "";
+
+//         try {
+//             str = '"' + property.getName() + "\":\"" + property.get(subclassReference).toString() + "\",";
+//         } catch (IllegalAccessException e) {
+//             //System.out.println(e.getMessage());
+//         }
+
+//        return str;
+//     }
+
+//     private void removeTrailingComma(StringBuffer text) {
+//         int end = text.length() - 1;
+//         int position = end - 1;
+//         if (text.lastIndexOf(",}") == position) {
+//             text.deleteCharAt(position);
+//         } else if (text.charAt(end) == ',') {
+//             text.deleteCharAt(end);
+//         }
+//     }
+
+// }
